@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SearchPage from "./pages/SearchPage";
 import WatchlistPage from './pages/WatchlistPage';
+import MovieDetailPage from './pages/MovieDetailPage';
 
 function App() {
   const [watchlist, setWatchlist] = useState([]);
@@ -26,6 +27,8 @@ function App() {
           <Route path='/' element={<SearchPage onAdd={handleAddToWatchlist}/>}
           />
           <Route path='/watchlist' element={<WatchlistPage watchlist={watchlist} onRemove={handleRemoveFromWatchlist}/>}
+          />
+          <Route path="/movie/:id" element={<MovieDetailPage/>}
           /> 
         </Routes>
       </div>
