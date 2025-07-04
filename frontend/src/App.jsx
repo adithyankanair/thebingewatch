@@ -1,28 +1,35 @@
-import { useState } from 'react'
-import axios from 'axios';
+import { useState } from 'react';
+import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import SearchPage from "./pages/SearchPage";
+import WatchlistPage from './pages/WatchlistPage';
 
 function App() {
-  const [query, setQuery] = useState('');
-  const [movies, setMovies] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
 
-  const searchMovies = async () => {
-    const res = await axios.get(`http://localhost:5000/api/search?q=${query}`);
-    setMovies(res.data.results);
+  const handleAddToWatchlist = (movie) => {
+    const exists  = watchlist.find(m => m.id === movie.id);
+    if (!exists) setWatchlist([...watchlist,movie]);
+  };
+
+  const handleRemoveFromWatchlist = (id) => {
+    const updated = watchlist.filter(m => m.id !== id);
+    setWatchlist(updated);
   };
 
   return (
-    <div>
-      <h1>The Binge Shelf</h1>
-      <input value={query} onChange={e => setQuery(e.target.value)} placeholder='Search...'/>
-      <button onClick={searchMovies}>Search</button>
-    
-      {movies.map(movie => (
-        <div key={movie.id}>
-          <h3>{movie.title}</h3>
-          <p>{movie.release_date}</p>
-        </div>
-      ))}
-    </div>
+    <Router>
+      <div>
+        <nav style={{marginBottom: 20}}>
+          <Link to="/">🔍 Search</Link> |<Link to="/watchlist">📺 Watchlist ({watchlist.length})</Link>
+        </nav>
+        <Routes>
+          <Route path='/' element={<SearchPage onAdd={handleAddToWatchlist}/>}
+          />
+          <Route path='/watchlist' element={<WatchlistPage watchlist={watchlist} onRemove={handleRemoveFromWatchlist}/>}
+          /> 
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
