@@ -6,8 +6,8 @@ A clean, full-stack Movie Tracker app where you can search for movies, add them 
 
 ## 📸 Preview
 
-![App Screenshot](\frontend\src\assets\home_page) 
-![App Screenshot](\frontend\src\assets\watchlist_page)
+![App Screenshot](screenshots/home_page) 
+![App Screenshot](screenshots/watchlist_page)
 
 ---
 
@@ -15,7 +15,7 @@ A clean, full-stack Movie Tracker app where you can search for movies, add them 
 
 | Frontend | Backend | Database | Styling |
 |----------|---------|----------|---------|
-| React (Vite) | Flask (Python) | SQLite | Bootstrap 5, custom theme |
+| React (Vite) | Flask (Python) | SQLite | Bootstrap |
 
 ---
 
@@ -24,7 +24,6 @@ A clean, full-stack Movie Tracker app where you can search for movies, add them 
 - 🔍 Search movies using TMDB API
 - 📥 Add/remove movies from a persistent watchlist
 - 🎬 View movie details
-- 🌙 Dark theme UI with custom palette (`#222831`, `#31363F`, `#76ABAE`, `#EEEEEE`)
 - 📱 Responsive layout with Bootstrap Grid
 - ✅ Fully connected frontend + backend
 
