@@ -16,6 +16,8 @@ export default function SearchPage({onAdd}) {
             <h2>Search Movies</h2>
             <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search..."/>
             <button onClick={searchMovies}>Search</button>
+            <br/>
+            <br/>
             <div className="row g-3">
                 {movies.map(movie => (
                     <div className='col-6 col-md-4 col-lg-3' key={movie.id}>
