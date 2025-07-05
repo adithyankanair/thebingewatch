@@ -8,11 +8,11 @@ A clean, full-stack Movie Tracker app where you can search for movies, add them 
 
 ### 🏠 Home Page
 
-![Home Page](assets/screenshots/homepage.png)
+![Home Page](assets/screenshots/home_page.png)
 
 ### 📋 Watchlist Page
 
-![Watchlist Page](assets/screenshots/watchlist.png)
+![Watchlist Page](assets/screenshots/watchlist_page.png)
 
 ---
 
