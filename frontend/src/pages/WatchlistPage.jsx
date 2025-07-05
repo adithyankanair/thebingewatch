@@ -7,9 +7,9 @@ export default function WatchlistPage({ watchlist, onRemove }) {
             {watchlist.length === 0 && <p>No movies added yet.</p>}
             {watchlist.map(movie => (
                 <MovieCard
-                 key={movie.id} 
+                 key={movie.id || movie.movie_id} 
                  movie={movie}
-                 onRemove={onRemove}
+                 onRemove= {() => onRemove(movie.movie_id || movie.id)}
                  showRemove={true} 
                 />
             ))}

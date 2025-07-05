@@ -17,7 +17,7 @@ export default function MovieCard({movie, onAdd, onRemove, showRemove}) {
                 <p>{movie.release_date}</p>
 
                 {onAdd && <button onClick={() => onAdd(movie)}>➕ Add to Watchlist</button>}
-                {showRemove && <button onClick={() => onRemove(movie.id)}>❌ Remove</button>}
+                {showRemove && <button onClick={() => onRemove(movie.id || movie.movie_id)}>❌ Remove</button>}
                 <br/>
                 <Link to={`/movie/${movie.id}`} style={{textDecoration: 'underline', color: 'blue',}}>
                     🎬 View Details

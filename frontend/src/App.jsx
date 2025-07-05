@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from "axios";
 import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SearchPage from "./pages/SearchPage";
 import WatchlistPage from './pages/WatchlistPage';
@@ -7,15 +8,50 @@ import MovieDetailPage from './pages/MovieDetailPage';
 function App() {
   const [watchlist, setWatchlist] = useState([]);
 
-  const handleAddToWatchlist = (movie) => {
-    const exists  = watchlist.find(m => m.id === movie.id);
-    if (!exists) setWatchlist([...watchlist,movie]);
+  useEffect(() => {
+    fetchwatchlist();
+  },[]);
+
+  const fetchwatchlist = async () => {
+    const res = await axios.get("http://localhost:5000/api/watchlist");
+    setWatchlist(res.data);
   };
 
-  const handleRemoveFromWatchlist = (id) => {
-    const updated = watchlist.filter(m => m.id !== id);
-    setWatchlist(updated);
+  const handleAddToWatchlist = async (movie) => {
+    const exists =watchlist.find(m => m.movie_id === movie.id);
+    if(exists) return;
+
+    await axios.post("http://localhost:5000/api/watchlist", {
+      id: movie.id,
+      title:movie.title,
+      poster_path: movie.poster_path,
+      release_date: movie.release_date
+    });
+
+    fetchwatchlist();
   };
+
+  const handleRemoveFromWatchlist = async (movieId) => {
+    console.log("Removing movie with id:", movieId);
+    try {
+      await axios.delete(`http://localhost:5000/api/watchlist/${movieId}`);
+      fetchwatchlist();
+    } catch (err) {
+      console.error("Delete failed: ", err.message);
+    }
+      
+  };
+    
+    //not in use ,switched to db 
+  // const handleAddToWatchlist = (movie) => {
+  //   const exists  = watchlist.find(m => m.id === movie.id);
+  //   if (!exists) setWatchlist([...watchlist,movie]);
+  // };
+
+  // const handleRemoveFromWatchlist = (id) => {
+  //   const updated = watchlist.filter(m => m.id !== id);
+  //   setWatchlist(updated);
+  // };
 
   return (
     <Router>
