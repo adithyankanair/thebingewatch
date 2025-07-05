@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SearchPage from "./pages/SearchPage";
 import WatchlistPage from './pages/WatchlistPage';
 import MovieDetailPage from './pages/MovieDetailPage';
+// import './styles.css';
 
 function App() {
   const [watchlist, setWatchlist] = useState([]);
@@ -54,8 +55,8 @@ function App() {
   // };
 
   return (
-    <Router>
-      <div>
+      <div style={{ backgroundColor: "#222831",color: "#EEEEEE", minHeight: "100vh", padding: "2rem" }}>
+      <Router>
         <nav style={{marginBottom: 20}}>
           <Link to="/">🔍 Search</Link> |<Link to="/watchlist">📺 Watchlist ({watchlist.length})</Link>
         </nav>
@@ -67,8 +68,8 @@ function App() {
           <Route path="/movie/:id" element={<MovieDetailPage/>}
           /> 
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 
